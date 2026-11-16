@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Tarefa</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <h1>Editar Tarefa #{{ tarefa[0] }}</h1>
+
+    <form action="/tarefas/atualizar/{{ tarefa[0] }}" method="POST">
+        <label>Título</label>
+        <input type="text" name="titulo" maxlength="100" value="{{ tarefa[1] }}" required>
+
+        <label>Descrição</label>
+        <textarea name="descricao" rows="3">{{ tarefa[2] or "" }}</textarea>
+
+        <button type="submit">Salvar alterações</button>
+        <a href="/">Cancelar</a>
+    </form>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Tarefas</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <h1>Lista de Tarefas</h1>
+
+    <form action="/tarefas/enviar" method="POST">
+        <label>Título</label>
+        <input type="text" name="titulo" maxlength="100" required>
+
+        <label>Descrição</label>
+        <textarea name="descricao" rows="3"></textarea>
+
+        <button type="submit">Adicionar tarefa</button>
+    </form>
+
+    <table>
+        <tr>
+            <th>#</th>
+            <th>Título</th>
+            <th>Descrição</th>
+            <th>Ações</th>
+        </tr>
+        {% for tarefa in tarefas %}
+        <tr>
+            <td>{{ tarefa[0] }}</td>
+            <td>{{ tarefa[1] }}</td>
+            <td>{{ tarefa[2] }}</td>
+            <td class="acoes">
+                <a class="botao editar" href="/tarefas/editar/{{ tarefa[0] }}">Editar</a>
+                <form action="/tarefas/excluir/{{ tarefa[0] }}" method="POST">
+                    <button type="submit">Excluir</button>
+                </form>
+            </td>
+        </tr>
+        {% else %}
+        <tr>
+            <td colspan="4">Nenhuma tarefa cadastrada.</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+</body>
+</html>
